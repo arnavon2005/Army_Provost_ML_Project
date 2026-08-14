@@ -403,3 +403,86 @@ def render_prototype_banner(message):
         banner_html,
         unsafe_allow_html=True
     )
+
+
+<style>
+/* HOSTED STREAMLIT CONTRAST FIX */
+
+/* ============================================================
+   HOSTED STREAMLIT CONTRAST FIX
+   ============================================================ */
+
+/* Streamlit alert containers */
+div[data-testid="stAlert"] {
+    color: #1f2937 !important;
+}
+
+/* All text inside alert containers */
+div[data-testid="stAlert"] * {
+    color: #1f2937 !important;
+}
+
+/* Warning alert text */
+div[data-testid="stAlert"][data-baseweb="notification"] {
+    color: #1f2937 !important;
+}
+
+/* Form/input labels */
+label,
+label p,
+[data-testid="stWidgetLabel"] p {
+    color: #1f2937 !important;
+}
+
+/* Selectbox / input text */
+input,
+textarea,
+div[data-baseweb="select"] * {
+    color: #f8fafc !important;
+}
+
+/* Placeholder text */
+input::placeholder,
+textarea::placeholder {
+    color: #cbd5e1 !important;
+    opacity: 1 !important;
+}
+
+/* Button text must stay visible */
+button,
+button * {
+    color: inherit !important;
+}
+
+/* Disabled buttons */
+button:disabled,
+button:disabled * {
+    color: #64748b !important;
+}
+
+/* Expander labels */
+[data-testid="stExpander"] summary,
+[data-testid="stExpander"] summary * {
+    color: #1f2937 !important;
+}
+
+/* Metric labels */
+[data-testid="stMetricLabel"],
+[data-testid="stMetricLabel"] * {
+    color: #475569 !important;
+}
+
+/* Tab labels */
+button[data-baseweb="tab"],
+button[data-baseweb="tab"] * {
+    color: #334155 !important;
+}
+
+/* Sidebar remains dark-themed */
+section[data-testid="stSidebar"] label,
+section[data-testid="stSidebar"] label p,
+section[data-testid="stSidebar"] [data-testid="stWidgetLabel"] p {
+    color: #f8fafc !important;
+}
+
+</style>
