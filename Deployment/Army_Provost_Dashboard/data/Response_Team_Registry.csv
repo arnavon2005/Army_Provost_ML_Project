@@ -1,0 +1,11 @@
+Team_ID,Team_Name,Status,Current_Zone,Primary_Capability,Secondary_Capabilities,Readiness_Level,Personnel_Strength,Vehicle_Available,Capability_Tags,Current_Assignment,Last_Updated
+RT-01,Response Team 01,AVAILABLE,Zone A,Access and Perimeter Security,Incident Control; Personnel Safety,READY,6,True,Entry Control; Restricted Area Support,None,2026-08-13 10:30:56.205607
+RT-02,Response Team 02,AVAILABLE,Zone B,Personnel Safety,Incident Control; Medical Coordination,READY,7,True,Personnel Protection; Immediate Response,,2026-08-13 10:26:37.228182
+RT-03,Response Team 03,OFFLINE,Zone C,Vehicle and Mobility Security,Traffic and Movement Control; Incident Control,UNAVAILABLE,5,False,Vehicle Security; Route Control,,2026-08-13 09:08:10.287195
+RT-04,Response Team 04,AVAILABLE,Zone D,Property and Asset Security,Incident Control; Access and Perimeter Security,READY,6,True,Stores Security; Asset Protection,,2026-08-13 09:08:10.287205
+RT-05,Response Team 05,AVAILABLE,Zone E,Personnel Safety,Incident Control; Investigation Support,LIMITED,5,True,Personnel Protection; Investigation Support,,2026-08-13 09:08:10.287205
+RT-06,Response Team 06,ASSIGNED,Zone F,Controlled Substances Response,Incident Control; Investigation Support,READY,6,True,Controlled Substance Handling; Evidence Support,SIM-INC-0042,2026-08-13 09:08:10.287206
+RT-07,Response Team 07,AVAILABLE,Zone G,Investigation Support,Incident Control; Property and Asset Security,READY,4,True,Evidence Preservation; Documentation,,2026-08-13 09:08:10.287207
+RT-08,Response Team 08,AVAILABLE,Zone H,Sensitive Incident Response,Access and Perimeter Security; Incident Control,READY,6,True,Restricted Area Support; Sensitive Incident Handling,,2026-08-13 09:08:10.287208
+RT-09,Response Team 09,AVAILABLE,Zone C,Vehicle and Mobility Security,Traffic and Movement Control; Incident Control,READY,6,True,Vehicle Security; Traffic Control,,2026-08-13 09:08:10.287209
+RT-10,Response Team 10,AVAILABLE,Zone A,Controlled Substances Response,Investigation Support; Incident Control,LIMITED,5,False,Evidence Support; Controlled Substance Response,,2026-08-13 09:08:10.287210

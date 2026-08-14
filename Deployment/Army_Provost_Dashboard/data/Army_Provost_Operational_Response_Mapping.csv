@@ -1,0 +1,35 @@
+Primary Type,Provost Incident Category,Incident Subcategory,Priority Relevance,Recommended Response Type
+THEFT,Property & Asset Security,Theft / Property Loss,Moderate,Property / Asset Security Response
+BATTERY,Personnel & Physical Safety,Physical Assault,High,Personnel Safety / Provost Response
+CRIMINAL DAMAGE,Property & Asset Security,Property Damage,Moderate,Property / Asset Security Response
+NARCOTICS,Controlled Substances,Narcotics Activity,High,Controlled Substances / Security Response
+ASSAULT,Personnel & Physical Safety,Assault / Threat of Injury,High,Personnel Safety / Provost Response
+OTHER OFFENSE,"Fraud, Deception & Administrative",Other / Unclassified Offence,Low,Administrative / Investigation Response
+BURGLARY,Property & Asset Security,Unauthorized Entry / Burglary,Moderate,Property / Asset Security Response
+MOTOR VEHICLE THEFT,Vehicle & Mobility Security,Vehicle Theft,High,Vehicle / Mobility Security Response
+DECEPTIVE PRACTICE,"Fraud, Deception & Administrative",Fraud / Deception,Moderate,Administrative / Investigation Response
+ROBBERY,Property & Asset Security,Violent Property Crime,High,Property / Asset Security Response
+CRIMINAL TRESPASS,Property & Asset Security,Unauthorized Access,Moderate,Property / Asset Security Response
+WEAPONS VIOLATION,Weapons & Armed Security,Weapons Violation,High,Weapons / Security Response
+PROSTITUTION,Sexual & Exploitation-Related,Commercial Sexual Activity,Moderate,Sensitive Incident / Specialized Response
+OFFENSE INVOLVING CHILDREN,Child & Vulnerable-Person Safety,Child-Related Offence,Critical,Vulnerable-Person Protection / Specialized Response
+PUBLIC PEACE VIOLATION,Public Order & Discipline,Public Order Violation,Moderate,Public Order / Discipline Response
+SEX OFFENSE,Sexual & Exploitation-Related,Sexual Offence,High,Sensitive Incident / Specialized Response
+CRIM SEXUAL ASSAULT,Sexual & Exploitation-Related,Sexual Assault,Critical,Sensitive Incident / Specialized Response
+INTERFERENCE WITH PUBLIC OFFICER,Public Order & Discipline,Authority / Officer Interference,Moderate,Public Order / Discipline Response
+LIQUOR LAW VIOLATION,Public Order & Discipline,Alcohol-Related Violation,Low,Public Order / Discipline Response
+ARSON,"Fire, Destructive & Major Threats",Arson / Fire Threat,High,Fire / Major Threat Response
+GAMBLING,Public Order & Discipline,Gambling Activity,Low,Public Order / Discipline Response
+HOMICIDE,Personnel & Physical Safety,Fatal Violence,Critical,Personnel Safety / Provost Response
+CRIMINAL SEXUAL ASSAULT,Sexual & Exploitation-Related,Sexual Assault,Critical,Sensitive Incident / Specialized Response
+KIDNAPPING,Personnel & Physical Safety,Abduction / Kidnapping,Critical,Personnel Safety / Provost Response
+STALKING,Personnel & Physical Safety,Persistent Threat / Stalking,High,Personnel Safety / Provost Response
+INTIMIDATION,Personnel & Physical Safety,Threat / Intimidation,High,Personnel Safety / Provost Response
+CONCEALED CARRY LICENSE VIOLATION,Weapons & Armed Security,Unauthorized Weapons Carry,High,Weapons / Security Response
+OBSCENITY,Public Order & Discipline,Public Conduct Violation,Low,Public Order / Discipline Response
+PUBLIC INDECENCY,Public Order & Discipline,Public Conduct Violation,Low,Public Order / Discipline Response
+OTHER NARCOTIC VIOLATION,Controlled Substances,Other Drug-Related Violation,High,Controlled Substances / Security Response
+HUMAN TRAFFICKING,Sexual & Exploitation-Related,Human Trafficking,Critical,Sensitive Incident / Specialized Response
+NON-CRIMINAL,"Fraud, Deception & Administrative",Non-Criminal / Administrative,Low,Administrative / Investigation Response
+RITUALISM,Public Order & Discipline,Unclassified Conduct,Low,Public Order / Discipline Response
+DOMESTIC VIOLENCE,Personnel & Physical Safety,Domestic / Interpersonal Violence,High,Personnel Safety / Provost Response

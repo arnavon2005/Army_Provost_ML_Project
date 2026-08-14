@@ -1,0 +1,35 @@
+Primary Type,Provost Incident Category,Incident Subcategory,Priority Relevance,Mapping Rationale
+THEFT,Property & Asset Security,Theft / Property Loss,Moderate,Involves unauthorized taking or loss of property or assets.
+BATTERY,Personnel & Physical Safety,Physical Assault,High,Involves physical harm or attempted physical harm to a person.
+CRIMINAL DAMAGE,Property & Asset Security,Property Damage,Moderate,Involves intentional damage to property or assets.
+NARCOTICS,Controlled Substances,Narcotics Activity,High,Involves controlled-substance related activity.
+ASSAULT,Personnel & Physical Safety,Assault / Threat of Injury,High,Involves an assault or threat of physical harm.
+OTHER OFFENSE,"Fraud, Deception & Administrative",Other / Unclassified Offence,Low,Represents offences not captured by the major defined categories.
+BURGLARY,Property & Asset Security,Unauthorized Entry / Burglary,Moderate,Involves unlawful entry associated with property-related crime.
+MOTOR VEHICLE THEFT,Vehicle & Mobility Security,Vehicle Theft,High,Involves unauthorized taking of a motor vehicle.
+DECEPTIVE PRACTICE,"Fraud, Deception & Administrative",Fraud / Deception,Moderate,Involves deceptive or fraudulent activity.
+ROBBERY,Property & Asset Security,Violent Property Crime,High,Involves property-taking accompanied by force or threat.
+CRIMINAL TRESPASS,Property & Asset Security,Unauthorized Access,Moderate,Involves unauthorized entry or presence on property.
+WEAPONS VIOLATION,Weapons & Armed Security,Weapons Violation,High,"Involves unlawful possession, use, or handling of weapons."
+PROSTITUTION,Sexual & Exploitation-Related,Commercial Sexual Activity,Moderate,Represents a category involving commercial sexual activity.
+OFFENSE INVOLVING CHILDREN,Child & Vulnerable-Person Safety,Child-Related Offence,Critical,Involves an offence affecting or involving children.
+PUBLIC PEACE VIOLATION,Public Order & Discipline,Public Order Violation,Moderate,Involves disruption or violation of public peace and order.
+SEX OFFENSE,Sexual & Exploitation-Related,Sexual Offence,High,Involves a sexual offence requiring sensitive handling.
+CRIM SEXUAL ASSAULT,Sexual & Exploitation-Related,Sexual Assault,Critical,Involves sexual assault and presents a serious personnel-safety concern.
+INTERFERENCE WITH PUBLIC OFFICER,Public Order & Discipline,Authority / Officer Interference,Moderate,Involves interference with an officer or authorized public function.
+LIQUOR LAW VIOLATION,Public Order & Discipline,Alcohol-Related Violation,Low,Involves violation of applicable liquor-related regulations.
+ARSON,"Fire, Destructive & Major Threats",Arson / Fire Threat,High,Involves deliberate fire-setting and potential major property or personnel risk.
+GAMBLING,Public Order & Discipline,Gambling Activity,Low,Represents gambling-related activity or violation.
+HOMICIDE,Personnel & Physical Safety,Fatal Violence,Critical,Represents fatal violence and an extreme personnel-safety concern.
+CRIMINAL SEXUAL ASSAULT,Sexual & Exploitation-Related,Sexual Assault,Critical,Involves serious sexual assault and presents a major personnel-safety concern.
+KIDNAPPING,Personnel & Physical Safety,Abduction / Kidnapping,Critical,Involves unlawful abduction or confinement of a person.
+STALKING,Personnel & Physical Safety,Persistent Threat / Stalking,High,May indicate persistent targeting or an ongoing threat to an individual.
+INTIMIDATION,Personnel & Physical Safety,Threat / Intimidation,High,"Involves threats, intimidation, or coercive conduct toward a person."
+CONCEALED CARRY LICENSE VIOLATION,Weapons & Armed Security,Unauthorized Weapons Carry,High,Involves violation associated with concealed carrying of a weapon.
+OBSCENITY,Public Order & Discipline,Public Conduct Violation,Low,Represents conduct classified as an obscenity-related violation.
+PUBLIC INDECENCY,Public Order & Discipline,Public Conduct Violation,Low,Involves conduct considered inappropriate or unlawful in a public setting.
+OTHER NARCOTIC VIOLATION,Controlled Substances,Other Drug-Related Violation,High,Represents a narcotics-related violation outside the primary narcotics category.
+HUMAN TRAFFICKING,Sexual & Exploitation-Related,Human Trafficking,Critical,Represents severe exploitation involving trafficking of persons.
+NON-CRIMINAL,"Fraud, Deception & Administrative",Non-Criminal / Administrative,Low,Represents records classified as non-criminal rather than a conventional offence.
+RITUALISM,Public Order & Discipline,Unclassified Conduct,Low,Represents a rare category requiring broad operational classification.
+DOMESTIC VIOLENCE,Personnel & Physical Safety,Domestic / Interpersonal Violence,High,Involves interpersonal violence and potential personnel-safety concerns.
