@@ -1022,96 +1022,161 @@ def process_operator_decision(
 # ======================================================================
 
 
+
 def append_resource_allocation_audit(
     decision_record,
     audit_path=None
 ):
     """
     Persist one human-approved resource-allocation decision
-    to the hosted Supabase database.
+    to Supabase.
 
-    audit_path is retained only for compatibility with the
-    previous CSV-based function signature.
+    NumPy / Pandas scalar values are converted to standard
+    Python types before JSON serialization.
     """
 
     client = get_supabase_client()
 
 
-    timestamp = decision_record.get(
-        "Timestamp",
-        None
-    )
+    # --------------------------------------------------------
+    # JSON-SAFE VALUE NORMALIZER
+    # --------------------------------------------------------
 
-    if hasattr(
-        timestamp,
-        "isoformat"
-    ):
-        timestamp = timestamp.isoformat()
+    def json_safe(value):
+
+        if value is None:
+            return None
+
+        # Pandas / NumPy missing values
+        try:
+            if pd.isna(value):
+                return None
+        except Exception:
+            pass
+
+        # NumPy scalar -> native Python scalar
+        if hasattr(value, "item"):
+
+            try:
+                value = value.item()
+            except Exception:
+                pass
+
+        # datetime / Timestamp -> ISO string
+        if hasattr(value, "isoformat"):
+
+            try:
+                return value.isoformat()
+            except Exception:
+                pass
+
+        # Explicitly normalize standard scalar types
+        if isinstance(value, bool):
+            return bool(value)
+
+        if isinstance(value, int):
+            return int(value)
+
+        if isinstance(value, float):
+            return float(value)
+
+        if isinstance(value, str):
+            return value
+
+        return value
 
 
     record = {
 
         "decision_id":
-            decision_record[
-                "Decision_ID"
-            ],
+            json_safe(
+                decision_record.get(
+                    "Decision_ID"
+                )
+            ),
 
         "incident_id":
-            decision_record.get(
-                "Incident_ID"
+            json_safe(
+                decision_record.get(
+                    "Incident_ID"
+                )
             ),
 
         "decision_timestamp":
-            timestamp,
+            json_safe(
+                decision_record.get(
+                    "Timestamp"
+                )
+            ),
 
         "operator_uid":
-            decision_record.get(
-                "Operator_UID"
+            json_safe(
+                decision_record.get(
+                    "Operator_UID"
+                )
             ),
 
         "operational_response":
-            decision_record.get(
-                "Operational_Response"
+            json_safe(
+                decision_record.get(
+                    "Operational_Response"
+                )
             ),
 
         "incident_zone":
-            decision_record.get(
-                "Incident_Zone"
+            json_safe(
+                decision_record.get(
+                    "Incident_Zone"
+                )
             ),
 
         "required_capability":
-            decision_record.get(
-                "Required_Capability"
+            json_safe(
+                decision_record.get(
+                    "Required_Capability"
+                )
             ),
 
         "recommended_team_id":
-            decision_record.get(
-                "Recommended_Team_ID"
+            json_safe(
+                decision_record.get(
+                    "Recommended_Team_ID"
+                )
             ),
 
         "recommended_team_score":
-            decision_record.get(
-                "Recommended_Team_Score"
+            json_safe(
+                decision_record.get(
+                    "Recommended_Team_Score"
+                )
             ),
 
         "operator_action":
-            decision_record.get(
-                "Operator_Action"
+            json_safe(
+                decision_record.get(
+                    "Operator_Action"
+                )
             ),
 
         "selected_team_id":
-            decision_record.get(
-                "Selected_Team_ID"
+            json_safe(
+                decision_record.get(
+                    "Selected_Team_ID"
+                )
             ),
 
         "selected_team_score":
-            decision_record.get(
-                "Selected_Team_Score"
+            json_safe(
+                decision_record.get(
+                    "Selected_Team_Score"
+                )
             ),
 
         "override_reason":
-            decision_record.get(
-                "Override_Reason"
+            json_safe(
+                decision_record.get(
+                    "Override_Reason"
+                )
             )
     }
 
