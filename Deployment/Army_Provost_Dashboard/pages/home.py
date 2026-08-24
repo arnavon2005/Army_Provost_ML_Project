@@ -1,7 +1,9 @@
 
 import streamlit as st
 import plotly.graph_objects as go
-from datetime import datetime
+from datetime import datetime, timedelta
+
+from database import get_supabase_client
 
 from ui_styles import (
     render_page_header,
@@ -37,6 +39,157 @@ render_prototype_banner(
 )
 
 
+
+# ======================================================================
+# LIVE INCIDENT STATISTICS
+# ======================================================================
+
+def load_live_zone_statistics():
+    """
+    Load incident statistics for the fictional operational zones
+    from Supabase.
+
+    Only incidents recorded during the last 7 days and containing
+    a valid simulated incident_zone are included.
+    """
+
+    zone_stats = {
+        zone: {
+            "recent_incidents": 0,
+            "high_priority_incidents": 0,
+            "most_common_incident": "No recent incidents",
+            "last_incident": "No recent incidents",
+            "status": "NORMAL"
+        }
+        for zone in "ABCDEFGH"
+    }
+
+    try:
+
+        client = get_supabase_client()
+
+        cutoff = (
+            datetime.now()
+            - timedelta(days=7)
+        ).isoformat()
+
+        response = (
+            client
+            .table("dss_incident_audit")
+            .select(
+                "decision_timestamp,"
+                "primary_type,"
+                "provost_incident_category,"
+                "priority,"
+                "incident_zone"
+            )
+            .gte(
+                "decision_timestamp",
+                cutoff
+            )
+            .not_.is_(
+                "incident_zone",
+                "null"
+            )
+            .order(
+                "decision_timestamp",
+                desc=True
+            )
+            .execute()
+        )
+
+        records = response.data or []
+
+        for zone_letter in "ABCDEFGH":
+
+            zone_name = f"Zone {zone_letter}"
+
+            zone_records = [
+                record
+                for record in records
+                if record.get("incident_zone") == zone_name
+            ]
+
+            if not zone_records:
+                continue
+
+            priorities = [
+                str(record.get("priority") or "")
+                for record in zone_records
+            ]
+
+            critical_count = sum(
+                priority == "Critical"
+                for priority in priorities
+            )
+
+            high_count = sum(
+                priority == "High"
+                for priority in priorities
+            )
+
+            categories = [
+                record.get("provost_incident_category")
+                for record in zone_records
+                if record.get("provost_incident_category")
+            ]
+
+            if categories:
+                most_common = max(
+                    set(categories),
+                    key=categories.count
+                )
+            else:
+                most_common = "Unclassified"
+
+            latest = zone_records[0]
+
+            latest_incident = (
+                latest.get("primary_type")
+                or latest.get("provost_incident_category")
+                or "Unclassified incident"
+            )
+
+            if critical_count > 0:
+                status = "ELEVATED"
+
+            elif high_count > 0:
+                status = "MONITOR"
+
+            else:
+                status = "NORMAL"
+
+            zone_stats[zone_letter] = {
+                "recent_incidents":
+                    len(zone_records),
+
+                "high_priority_incidents":
+                    critical_count + high_count,
+
+                "most_common_incident":
+                    most_common,
+
+                "last_incident":
+                    latest_incident,
+
+                "status":
+                    status
+            }
+
+        return zone_stats
+
+    except Exception as exc:
+
+        st.warning(
+            "Live zone statistics could not be loaded. "
+            "The schematic will display zero live incidents."
+        )
+
+        return zone_stats
+
+
+LIVE_ZONE_STATS = load_live_zone_statistics()
+
 # ======================================================================
 # SIMULATED BASE ZONE DATA
 # ======================================================================
@@ -49,11 +202,16 @@ BASE_ZONES = {
         "description":
             "Simulated administrative and command area used for "
             "prototype control-room visualization.",
-        "recent_incidents": 6,
-        "high_priority_incidents": 2,
-        "most_common_incident": "Administrative / Investigation",
-        "last_incident": "Simulated access-control irregularity",
-        "status": "NORMAL"
+        "recent_incidents":
+            LIVE_ZONE_STATS["A"]["recent_incidents"],
+        "high_priority_incidents":
+            LIVE_ZONE_STATS["A"]["high_priority_incidents"],
+        "most_common_incident":
+            LIVE_ZONE_STATS["A"]["most_common_incident"],
+        "last_incident":
+            LIVE_ZONE_STATS["A"]["last_incident"],
+        "status":
+            LIVE_ZONE_STATS["A"]["status"]
     },
 
     "B": {
@@ -61,11 +219,16 @@ BASE_ZONES = {
         "short_name": "RESIDENTIAL",
         "description":
             "Simulated residential and accommodation area for personnel.",
-        "recent_incidents": 11,
-        "high_priority_incidents": 3,
-        "most_common_incident": "Personnel Safety",
-        "last_incident": "Simulated disturbance report",
-        "status": "MONITOR"
+        "recent_incidents":
+            LIVE_ZONE_STATS["B"]["recent_incidents"],
+        "high_priority_incidents":
+            LIVE_ZONE_STATS["B"]["high_priority_incidents"],
+        "most_common_incident":
+            LIVE_ZONE_STATS["B"]["most_common_incident"],
+        "last_incident":
+            LIVE_ZONE_STATS["B"]["last_incident"],
+        "status":
+            LIVE_ZONE_STATS["B"]["status"]
     },
 
     "C": {
@@ -73,11 +236,16 @@ BASE_ZONES = {
         "short_name": "VEHICLE / TRANSPORT",
         "description":
             "Simulated mobility, vehicle holding and transport area.",
-        "recent_incidents": 14,
-        "high_priority_incidents": 3,
-        "most_common_incident": "Vehicle / Mobility",
-        "last_incident": "Simulated vehicle security incident",
-        "status": "ELEVATED"
+        "recent_incidents":
+            LIVE_ZONE_STATS["C"]["recent_incidents"],
+        "high_priority_incidents":
+            LIVE_ZONE_STATS["C"]["high_priority_incidents"],
+        "most_common_incident":
+            LIVE_ZONE_STATS["C"]["most_common_incident"],
+        "last_incident":
+            LIVE_ZONE_STATS["C"]["last_incident"],
+        "status":
+            LIVE_ZONE_STATS["C"]["status"]
     },
 
     "D": {
@@ -85,11 +253,16 @@ BASE_ZONES = {
         "short_name": "STORES / LOGISTICS",
         "description":
             "Simulated stores, supply and logistics support area.",
-        "recent_incidents": 9,
-        "high_priority_incidents": 2,
-        "most_common_incident": "Property / Asset Security",
-        "last_incident": "Simulated inventory discrepancy",
-        "status": "NORMAL"
+        "recent_incidents":
+            LIVE_ZONE_STATS["D"]["recent_incidents"],
+        "high_priority_incidents":
+            LIVE_ZONE_STATS["D"]["high_priority_incidents"],
+        "most_common_incident":
+            LIVE_ZONE_STATS["D"]["most_common_incident"],
+        "last_incident":
+            LIVE_ZONE_STATS["D"]["last_incident"],
+        "status":
+            LIVE_ZONE_STATS["D"]["status"]
     },
 
     "E": {
@@ -97,11 +270,16 @@ BASE_ZONES = {
         "short_name": "TRAINING AREA",
         "description":
             "Simulated training and exercise zone.",
-        "recent_incidents": 7,
-        "high_priority_incidents": 1,
-        "most_common_incident": "Personnel Safety",
-        "last_incident": "Simulated training-area safety report",
-        "status": "NORMAL"
+        "recent_incidents":
+            LIVE_ZONE_STATS["E"]["recent_incidents"],
+        "high_priority_incidents":
+            LIVE_ZONE_STATS["E"]["high_priority_incidents"],
+        "most_common_incident":
+            LIVE_ZONE_STATS["E"]["most_common_incident"],
+        "last_incident":
+            LIVE_ZONE_STATS["E"]["last_incident"],
+        "status":
+            LIVE_ZONE_STATS["E"]["status"]
     },
 
     "F": {
@@ -109,11 +287,16 @@ BASE_ZONES = {
         "short_name": "ENTRY / SECURITY",
         "description":
             "Simulated main-access and perimeter security area.",
-        "recent_incidents": 18,
-        "high_priority_incidents": 5,
-        "most_common_incident": "Security / Access Control",
-        "last_incident": "Simulated unauthorized-access alert",
-        "status": "ELEVATED"
+        "recent_incidents":
+            LIVE_ZONE_STATS["F"]["recent_incidents"],
+        "high_priority_incidents":
+            LIVE_ZONE_STATS["F"]["high_priority_incidents"],
+        "most_common_incident":
+            LIVE_ZONE_STATS["F"]["most_common_incident"],
+        "last_incident":
+            LIVE_ZONE_STATS["F"]["last_incident"],
+        "status":
+            LIVE_ZONE_STATS["F"]["status"]
     },
 
     "G": {
@@ -121,11 +304,16 @@ BASE_ZONES = {
         "short_name": "MEDICAL",
         "description":
             "Simulated medical-support and emergency-response area.",
-        "recent_incidents": 5,
-        "high_priority_incidents": 1,
-        "most_common_incident": "Medical / Personnel Support",
-        "last_incident": "Simulated medical-support request",
-        "status": "NORMAL"
+        "recent_incidents":
+            LIVE_ZONE_STATS["G"]["recent_incidents"],
+        "high_priority_incidents":
+            LIVE_ZONE_STATS["G"]["high_priority_incidents"],
+        "most_common_incident":
+            LIVE_ZONE_STATS["G"]["most_common_incident"],
+        "last_incident":
+            LIVE_ZONE_STATS["G"]["last_incident"],
+        "status":
+            LIVE_ZONE_STATS["G"]["status"]
     },
 
     "H": {
@@ -134,11 +322,16 @@ BASE_ZONES = {
         "description":
             "Fictional restricted area included only to demonstrate "
             "situational-awareness concepts.",
-        "recent_incidents": 4,
-        "high_priority_incidents": 2,
-        "most_common_incident": "Security / Sensitive Incident",
-        "last_incident": "Simulated restricted-zone alert",
-        "status": "MONITOR"
+        "recent_incidents":
+            LIVE_ZONE_STATS["H"]["recent_incidents"],
+        "high_priority_incidents":
+            LIVE_ZONE_STATS["H"]["high_priority_incidents"],
+        "most_common_incident":
+            LIVE_ZONE_STATS["H"]["most_common_incident"],
+        "last_incident":
+            LIVE_ZONE_STATS["H"]["last_incident"],
+        "status":
+            LIVE_ZONE_STATS["H"]["status"]
     }
 }
 

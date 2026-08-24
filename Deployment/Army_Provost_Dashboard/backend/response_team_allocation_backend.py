@@ -90,6 +90,14 @@ RESPONSE_CAPABILITY_MAPPING = {
             "Access and Perimeter Security",
             "Incident Control"
         ]
+    },
+
+    "Public Order / Discipline Response": {
+        "primary": "Incident Control",
+        "secondary": [
+            "Personnel Safety",
+            "Investigation Support"
+        ]
     }
 }
 

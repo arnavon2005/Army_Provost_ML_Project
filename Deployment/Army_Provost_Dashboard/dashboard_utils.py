@@ -378,6 +378,11 @@ def append_dss_audit_record(
         "operator_uid":
             audit_record.get(
                 "Operator UID"
+            ),
+
+        "incident_zone":
+            audit_record.get(
+                "Incident Zone"
             )
     }
 
@@ -409,7 +414,8 @@ def execute_operational_analysis(
     district,
     beat,
     ward,
-    community_area
+    community_area,
+    incident_zone=None
 ):
 
     result = execute_dashboard_dss(
@@ -590,6 +596,9 @@ def execute_operational_analysis(
             ]
     }
 
+
+    # Attach simulated operational zone before persistence.
+    audit_record["Incident Zone"] = incident_zone
 
     audit_saved = True
     audit_error = None

@@ -292,7 +292,8 @@ if analyze_button:
             ward=int(ward),
             community_area=int(
                 community_area
-            )
+            ),
+            incident_zone=incident_zone
         )
 
         decision = analysis[
@@ -302,6 +303,10 @@ if analyze_button:
         record = analysis[
             "Decision Record"
         ]
+
+        # Attach the operator-selected simulated base zone
+        # so it is persisted with the incident audit record.
+        record["Incident Zone"] = incident_zone
 
         guidance = analysis[
             "Response Guidance"
