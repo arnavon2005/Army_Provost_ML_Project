@@ -290,6 +290,12 @@ else:
         icon="🚓"
     )
 
+    voice_intake_page = st.Page(
+        "pages/voice_microphone_test.py",
+        title="Voice Intake",
+        icon="🎙️"
+    )
+
     analytics_page = st.Page(
         "pages/analytics.py",
         title="Analytics",
@@ -312,7 +318,8 @@ else:
             "Control Room": [
                 home_page,
                 operations_page,
-                response_teams_page
+                response_teams_page,
+                voice_intake_page
             ],
 
             "System Intelligence": [
