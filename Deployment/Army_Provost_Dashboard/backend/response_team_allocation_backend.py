@@ -98,7 +98,33 @@ RESPONSE_CAPABILITY_MAPPING = {
             "Personnel Safety",
             "Investigation Support"
         ]
-    }
+    },
+
+    "Fire / Major Threat Response": {
+        "primary": "Incident Control",
+        "secondary": [
+            "Personnel Safety",
+            "Access and Perimeter Security",
+            "Medical Coordination"
+        ]
+    },
+
+    "Vulnerable-Person Protection / Specialized Response": {
+        "primary": "Personnel Safety",
+        "secondary": [
+            "Medical Coordination",
+            "Sensitive Incident Response"
+        ]
+    },
+
+    "Weapons / Security Response": {
+        "primary": "Sensitive Incident Response",
+        "secondary": [
+            "Access and Perimeter Security",
+            "Incident Control",
+            "Personnel Safety"
+        ]
+    },
 }
 
 
